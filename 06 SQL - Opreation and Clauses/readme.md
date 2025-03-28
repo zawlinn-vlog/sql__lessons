@@ -102,11 +102,43 @@ Wildcard Operators
 \* Not supported in PostgreSQL and MySQL databases. <br/>
 \*\* Supported only in Oracle databases.
 
+| S.No. | Wildcard & Description                                                                                         |
+| ----- | -------------------------------------------------------------------------------------------------------------- |
+| 1     | The percent sign (%)                                                                                           |
+|       | Matches one or more characters.                                                                                |
+|       | Note − MS Access uses the asterisk (\*) wildcard character instead of the percent sign (%) wildcard character. |
+| 2     | The underscore (\_)                                                                                            |
+|       | Matches one character.                                                                                         |
+|       | Note − MS Access uses a question mark (?) instead of the underscore (\_) to match any one character.           |
+
 star with word or character &mdash;
 
 ```sql
     SELECT colname FROM dbanme WHERE colname LIKE 'z%';
 ```
+
+or
+
+```sql
+    SELECT colname FROM dbanme WHERE colname LIKE '_un';
+```
+
+| S.No. | Statement & Description                                                     |
+| ----- | --------------------------------------------------------------------------- |
+| 1     | WHERE SALARY LIKE '200%'                                                    |
+|       | Finds any values that start with 200.                                       |
+| 2     | WHERE SALARY LIKE '%200%'                                                   |
+|       | Finds any values that have 200 in any position.                             |
+| 3     | WHERE SALARY LIKE '\_00%'                                                   |
+|       | Finds any values that have 00 in the second and third positions.            |
+| 4     | WHERE SALARY LIKE '2*%*%'                                                   |
+|       | Finds any values that start with 2 and are at least 3 characters in length. |
+| 5     | WHERE SALARY LIKE '%2'                                                      |
+|       | Finds any values that end with 2.                                           |
+| 6     | WHERE SALARY LIKE '\_2%3'                                                   |
+|       | Finds any values that have a 2 in the second position and end with a 3.     |
+| 7     | WHERE SALARY LIKE '2\_\_\_3'                                                |
+|       | Finds any values in a five-digit number that start with 2 and end with 3.   |
 
 <br>
 
