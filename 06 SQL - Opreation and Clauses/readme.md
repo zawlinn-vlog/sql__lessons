@@ -8,7 +8,7 @@
 
 <br/>
 
-#### WHERE Clauses ကို အသုံးပြုခြင်း
+#### `WHERE` Clauses ကို အသုံးပြုခြင်း
 
 SQL မှာ WHERE ကို result ‌တွေ SELECT, UPDATE သို့မဟုတ် DELETE ပြုလုပ်ရန်အတွက် အသုံးပြုပါတယ်။ ဒါအပြင် multiple table တွေကို Join ပီး record တွေကိုလည်း ထုတ်ပေးနိုင်ပါတယ်။
 
@@ -24,67 +24,106 @@ or
 
 > You can specify a condition using the comparison or logical operator such as, >, <, =, LIKE, NOT, etc.
 
-#### WHERE Clause with IN Operator
+#### `WHERE` Clause with `IN` Operator
 
-ရှာလိုသော value ရှိသည့် record ကို ဆွဲထုတ်တဲ့အခါ WHERE -- IN Operator ကို အသုံးပြုပါတယ်။
+ရှာလိုသော column ထဲ ရှာဖွေလိုသော value lists (val1, val2, val3 ...) ရှိသည့် record ကို ဆွဲထုတ်တဲ့အခါ `WHERE` -- `IN` Operator ကို အသုံးပြုပါတယ်။
+
+> In some scenarios we may use multiple OR statements to include multiple conditions in SELECT, DELETE, UPDATE, or INSERT statements. Alternatively, we can use the IN operator instead of multiples OR statements.
 
 ```sql
-    SELECT col, col, etc. FROM tbname WHERE col IN ('val', 'val', 'val');
+    SELECT * FROM tbname
+    WHERE col='val'
+    OR col='val'
+    OR col='val';
 ```
 
-#### WHERE Clause with NOT IN Operator
+အဲလိုရေးမယ့်အစား
+
+```sql
+    SELECT col, col, etc. FROM tbname
+    WHERE col
+    IN ('val', 'val', 'val');
+```
+
+`IN` Operator ကို အသုံးပြု၍ ရပါတယ်။
+
+```sql
+    SELECT *|col... FROM tbname
+    WHERE val IN (colname);
+```
+
+or
+
+```sql
+    SELECT *|col FROM tbname
+    WHERE colname1
+    IN (SELECT colname1 FROM tbname WHERE condition);
+```
+
+#### `WHERE` Clause with `NOT IN` Operator
 
 ရှာလိုသော value ရှိသည့် record ကို ဖယ်၍ ကျန်သော record များကို ဆွဲထုတ်တဲ့အခါ WHERE -- NOT IN Operator ကို အသုံးပြုပါတယ်။
 
 ```sql
-    SELECT col, col, etc. FROM tbname WHERE col NOT IN ('val', 'val', 'val');
+    SELECT col, col, etc. FROM tbname
+    WHERE col
+    NOT IN ('val', 'val', 'val');
 ```
 
-#### WHERE Clause with AND, OR Operator
+#### `WHERE` Clause with `AND`, `OR` Operator
 
 တစ်ခုထက် ပိုသော condition တွေကို စစ်ထုတ်တဲ့အခါမှာ AND and OR ကို ခြားခံအနေဖြင့် ဆက်ပေးရပါတယ် ခင်ဗျာ။
 
 ```sql
-    SELECT col, col, etc. FROM tbname WHERE (condition AND condition) OR condition;
+    SELECT col, col, etc. FROM tbname
+    WHERE (condition AND condition) OR condition;
 ```
 
-#### DISTINCT Keyword
+#### `DISTINCT` Keyword
 
 ထပ်နေတဲ့ value တွေရှိတဲ့ column ကို distinct သုံးပီး စစ်ထုတ်တဲ့အခါ unique data ကိုသာ တွေ့ရမှာ ဖြစ်ပါတယ်။
 
 ```sql
-    SELECT DISTINCT col, col, col, etc. FROM tbname | ORDER BY colname | WHERE [condition];
+    SELECT DISTINCT col, col, col, etc.
+    FROM tbname |
+    ORDER BY colname |
+    WHERE [condition];
 ```
 
-### GROUP BY Keyword
+### `GROUP BY` Keyword
 
 Database ထဲက record တွေကို ဆွဲထုတ်တဲ့အခါမှာ column တစ်ခုတည်းမှာ တည်ရှိသော တူညီသော data တွေကို စုစည်းပြီး ထုတ်ယူလို့ပါတယ် ခင်ဗျာ။ သူနဲ့ တွဲသုံးရတဲ့ function တွေရှိပါတယ်။ SUM(), COUNT(), AVG(), MAX(), MIN() and etc.
 
 ဥပမာ - address တူနေတဲ့ record ဘနှခုရှိလဲ သိချင်တဲ့အခါမျိုး
 
 ```sql
-    SELECT address, count(address) FROM dbname GROUP BY address;
+    SELECT address, count(address)
+    FROM dbname
+    GROUP BY address;
 ```
 
 > စုစည်းပီး ဆွဲထုတ်ထားတဲ့ record တွေကို filter လုပ်ချင်တဲ့အခါ HAVING ကို အသုံးပြုရပါတယ် WHERE clause သုံး၍ မရတော့ပါ။
 
 ```sql
-    SELECT age, COUNT(name) FROM dbname GROUP BY age HAVING age > 24;
+    SELECT age, COUNT(name) FROM dbname
+    GROUP BY age HAVING age > 24;
 ```
 
 or
 
 ```sql
-    SELECT age, COUNT(name) FROM dbname GROUP BY age HAVING age > 24 ORDER BY age ASC|DESC;
+    SELECT age, COUNT(name) FROM dbname
+    GROUP BY age HAVING age > 24 ORDER BY age ASC|DESC;
 ```
 
 or
 
 ```sql
-    SELECT age, COUNT(age) FROM dbname GROUP BY age HAVING COUNT(age) >= 2;
+    SELECT age, COUNT(age) FROM dbname
+    GROUP BY age HAVING COUNT(age) >= 2;
 ```
 
-#### LIKE Operator
+#### `LIKE` Operator
 
 LIKE Operator သည် WILDCARD Operator နှင့်တွဲဖက် အသုံးပြုရပါတယ် ခင်ဗျာ။
 
@@ -114,13 +153,15 @@ Wildcard Operators
 star with word or character &mdash;
 
 ```sql
-    SELECT colname FROM dbanme WHERE colname LIKE 'z%';
+    SELECT colname FROM dbanme
+    WHERE colname LIKE 'z%';
 ```
 
 or
 
 ```sql
-    SELECT colname FROM dbanme WHERE colname LIKE '_un';
+    SELECT colname FROM dbanme
+    WHERE colname LIKE '_un';
 ```
 
 | S.No. | Statement & Description                                                     |
@@ -139,6 +180,60 @@ or
 |       | Finds any values that have a 2 in the second position and end with a 3.     |
 | 7     | WHERE SALARY LIKE '2\_\_\_3'                                                |
 |       | Finds any values in a five-digit number that start with 2 and end with 3.   |
+
+#### `ANY` | ALL Operators
+
+The SQL `ANY` and ALL operators are used to perform a comparison between a single value and a range of values returned by the subquery.
+
+eg.
+
+```sql
+    SELECT * FROM tbname
+    WHERE colname > ANY
+    (SELECT colname FROM tbname
+    WHERE condition);
+```
+
+or
+
+```sql
+    SELECT colname FROM tbname
+    GROUP BY colname
+    HAVING colname
+    > ANY (SELECT colname FROM tbname
+    WHERE condition);
+```
+
+#### The SQL `EXISTS` Operator
+
+The SQL `EXISTS` operator is used to verify whether a particular record exists in a MySQL table. While using this operator we need to specify the record (for which you have to check the existence) using a subquery.
+
+The `EXISTS` operator is used in the WHERE clause of a SELECT statement to filter records based on the existence of related records in another table.
+
+- It is a logical operator.
+
+- It returns a Boolean value TRUE or FALSE.
+
+- It returns TRUE if the subquery returns at least one record.
+
+- If the EXISTS operator returns TRUE, the outer query will get executed; otherwise not.
+
+- It can be used in SELECT, UPDATE, DELETE or INSERT statements.
+
+```sql
+    SELECT * from tbname
+    WHERE EXISTS
+    (SELECT foreign_id FROM tbname
+    WHERE foreign_id=priamry_id AND condition);
+```
+
+<!-- `Checking for the existence of records in a many-to-many relationship` − The EXISTS operator can be used to check whether a record exists in a join table for a many-to-many relationship, for example, finding all customers who have purchased a particular product.
+
+`Filtering records based on the existence of related records` − The EXISTS operator can be used to filter records based on the existence of related records in another table. For example, finding all orders that have associated order details.
+
+`Aggregating data based on the existence of related records` − The EXISTS operator can be used to aggregate data based on the existence of related records. For example, finding the number of customers who have placed an order.
+
+`Optimizing queries` − The EXISTS operator can be used to optimize queries by only returning the necessary data. For example, finding the first order for each customer without using a self-join. -->
 
 <br>
 

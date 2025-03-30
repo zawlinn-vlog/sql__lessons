@@ -20,25 +20,29 @@ Database ထဲ Data တွေ ထည့်သွင်းတော့မယ်�
 User ဆီက Information တွေကို သိမ်းမယ်ဆိုရင် ဒီ Method ကို အသုံးပြုရပါတယ်။
 
 ```sql
-    INSERT INTO tbname (col, col, col, etc.) VALUE ('value', 'value', 'value', etc.);
+    INSERT INTO tbname (col, col, col, etc.)
+    VALUE ('value', 'value', 'value', etc.);
 ```
 
 or
 
 ```sql
-    INSERT INTO tbname (col, col, col, etc.) VALUES ('value', 'value', 'value', etc.);
+    INSERT INTO tbname (col, col, col, etc.)
+    VALUES ('value', 'value', 'value', etc.);
 ```
 
 Data တွေ back up လုပ်လိုသော အခါနှင့် Clone လုပ်လိုသော အခါတွေမှာတော့
 
 ```sql
-    INSERT INTO clone_tbname SELECT * FROM original_tbname;
+    INSERT INTO clone_tbname
+    SELECT * FROM original_tbname;
 ```
 
 or
 
 ```sql
-    INSERT INTO clone_tbname (col,col,col,etc.) SELECT (col,col,col,etc.) FROM original_tbname;
+    INSERT INTO clone_tbname (col,col,col,etc.)
+    SELECT (col,col,col,etc.) FROM original_tbname;
 ```
 
 ### Database ထဲမှာ Data များ ဆွဲထုတ်ခြင်း
@@ -58,13 +62,15 @@ or
 or
 
 ```sql
-    SELECT * FROM tbname WHERE {condition|expression};
+    SELECT * FROM tbname
+    WHERE {condition|expression};
 ```
 
 or
 
 ```sql
-    SELECT col, col, etc. FROM tbname WHERE {condition|expression};
+    SELECT col, col, etc. FROM tbname
+    WHERE {condition|expression};
 ```
 
 ### Database ထဲမှ Data များကို Update ပြုလုပ်ခြင်း &mdash;
@@ -76,13 +82,15 @@ SQL `UPDATE` Statement သည် Database ထဲက record များကို
 <!-- To filter records that needs to be modified, you can use a WHERE clause with UPDATE statement. Using a WHERE clause, you can either update a single row or multiple rows. -->
 
 ```sql
-    UPDATE tbname SET col="data" WHERE {condition|expression};
+    UPDATE tbname SET col="data"
+    WHERE {condition|expression};
 ```
 
 or
 
 ```sql
-    UPDATE tbname SET col='data', col='data' WHERE {condition|expression};
+    UPDATE tbname SET col='data', col='data'
+    WHERE {condition|expression};
 ```
 
 ### Database ထဲမှာ Data များကို Delete ပြုလုပ်ခြင်း &mdash;
@@ -100,7 +108,8 @@ SQL `DELETE` Statement သည် Database ထဲက record များကို
 Database record များကို ဆွဲထုတ်တဲ့အခါမှာ sorting စီပီး ထုတ်လို့ပါတယ်။ ဒါမှမဟုတ်ရင် record များက First come first serve အနေနဲ့အလုပ်လုပ်သွားမှာ ဖြစ်ပါတယ်။
 
 ```sql
-    SELECT * FROM tbname ORDER BY col,col,col [ASC|DESC];
+    SELECT * FROM tbname
+    ORDER BY col,col,col [ASC|DESC];
 ```
 
 or
@@ -134,19 +143,25 @@ The data in the view does not exist in the database physically. A view is typica
 - Summarize data from various tables which can be used to generate reports.
 
 ```sql
-    CREATE VIEW veiw_tbname AS SELECT * FROM existing_tbname;
+    CREATE VIEW veiw_tbname AS
+    SELECT * FROM existing_tbname;
 ```
 
 or
 
 ```sql
-    CREATE VIEW veiw_tbname AS SELECT col, col, col, etc... FROM existing_tbname WHERE [condition];
+    CREATE VIEW veiw_tbname AS
+    SELECT col, col, col, etc...
+    FROM existing_tbname WHERE [condition];
 ```
 
 or
 
 ```sql
-    CREATE VIEW veiw_tbname AS SELECT col, col, col, etc... FROM existing_tbname WHERE [condition] WITH CHECK OPTION;
+    CREATE VIEW veiw_tbname AS
+    SELECT col, col, col, etc...
+    FROM existing_tbname
+    WHERE [condition] WITH CHECK OPTION;
 ```
 
 ### Update View table
@@ -154,7 +169,9 @@ or
 view table က record တွေကို `UPDATE` လုပ်တဲ့အခါ original table က record တွေက လိုက်ပီး ပြောင်းသွားပါတယ်။
 
 ```sql
-    UPDATE view_tbname SET col='value', col='value', col='value', etc... WHERE [condition]
+    UPDATE view_tbname
+    SET col='value', col='value', col='value', etc...
+    WHERE [condition]
 ```
 
 ### View Table ကို နာမည်ပြောင်းခြင်း
