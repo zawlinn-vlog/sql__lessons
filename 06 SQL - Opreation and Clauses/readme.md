@@ -8,6 +8,28 @@
 
 <br/>
 
+```sql
+    CREATE TABLE CUSTOMERS (
+    ID INT NOT NULL,
+    NAME VARCHAR (20) NOT NULL,
+    AGE INT NOT NULL,
+    ADDRESS CHAR (25),
+    SALARY DECIMAL (18, 2),
+    PRIMARY KEY (ID)
+    );
+```
+
+```sql
+    INSERT INTO CUSTOMERS VALUES
+    (1, 'Ramesh', 32, 'Ahmedabad', 2000.00 ),
+    (2, 'Khilan', 25, 'Delhi', 1500.00 ),
+    (3, 'Kaushik', 23, 'Kota', 2000.00 ),
+    (4, 'Chaitali', 25, 'Mumbai', 6500.00 ),
+    (5, 'Hardik', 27, 'Bhopal', 8500.00 ),
+    (6, 'Komal', 22, 'Hyderabad', 4500.00 ),
+    (7, 'Muffy', 24, 'Indore', 10000.00 );
+```
+
 #### `WHERE` Clauses ကို အသုံးပြုခြင်း
 
 SQL မှာ WHERE ကို result ‌တွေ SELECT, UPDATE သို့မဟုတ် DELETE ပြုလုပ်ရန်အတွက် အသုံးပြုပါတယ်။ ဒါအပြင် multiple table တွေကို Join ပီး record တွေကိုလည်း ထုတ်ပေးနိုင်ပါတယ်။
@@ -70,13 +92,84 @@ or
     NOT IN ('val', 'val', 'val');
 ```
 
-#### `WHERE` Clause with `AND`, `OR` Operator
+#### `WHERE` Clause with `AND`, `OR`, `NOT` and `NOT EQUAL` Operator
 
 တစ်ခုထက် ပိုသော condition တွေကို စစ်ထုတ်တဲ့အခါမှာ AND and OR ကို ခြားခံအနေဖြင့် ဆက်ပေးရပါတယ် ခင်ဗျာ။
 
 ```sql
     SELECT col, col, etc. FROM tbname
     WHERE (condition AND condition) OR condition;
+```
+
+```sql
+    SELECT * FROM CUSTOMERS WHERE NOT (SALARY > 2000.00);
+```
+
+```sql
+    SELECT * FROM CUSTOMERS WHERE name NOT IN (SALARY > 2000.00);
+```
+
+```sql
+    SELECT name FROM CUSTOMERS WHERE name NOT LIKE 'k%';
+```
+
+```sql
+    SELECT * FROM CUSTOMERS WHERE NOT NULL;
+```
+
+```sql
+    SELECT * FROM CUSTOMERS
+    WHERE SALARY NOT BETWEEN 1500.00 AND 2500.00;
+```
+
+```sql
+    SELECT * FROM CUSTOMERS WHERE NOT EXISTS (
+    SELECT CUR_ID FROM CARS
+    WHERE CARS.CUR_ID = CUSTOMERS.ID);
+```
+
+```sql
+    SELECT * FROM CUSTOMERS WHERE NOT SALARY != '2000';
+```
+
+```sql
+    SELECT * FROM CUSTOMERS
+    WHERE ADDRESS <> 'Bhopal' AND (SALARY > '2000' OR SALARY = '2000');
+```
+
+#### IS NULL OR IS NOT NULL
+
+NULL vlaue ဆိုဘာ empty or unknown value ကိုခေါ်ဆိုတာ ဖြစ်ပါတယ်။ zero or empty string ကတော့ value တည်ရှိနေပီး null နှင့် မတူညီမပါ။ database record တွေဟာ null ဖြစ်လား မဖြစ်လား စစ်နိုင်တဲ့ operators နှစ်ခုရှိပါတယ်
+
+- IS NULL
+- IS NOT NULL
+
+```sql
+    SELECT COUNT(*) FROM orders WHER Qty IS NULL;
+```
+
+```sql
+    SELECT COUNT(*) FROM orders WHER Qty IS NOT NULL;
+```
+
+> SQL (UPDATE, INSERT, DELETE) တို့နဲ့ တွဲဖက်၍ အသုံးပြုနိုင်ပါတယ် ခင်ဗျာ။
+
+#### `BETWEEN` operator
+
+Database ထဲက Record များထဲက integer, characters or dates တွေကို specified range အတွင်းဆွဲထုတ်ချင်တဲ့အခါ between operator ကို အသုံးပြုနိုင်ပါတယ်။
+
+> You can use the BETWEEN operator to replace a combination of "greater than equal AND less than equal" conditions.
+
+```sql
+    SELECT column1, column2, column3,....columnN
+    FROM table_name
+    WHERE column BETWEEN value1 AND value2;
+```
+
+```sql
+    SELECT * FROM CUSTOMERS
+    WHERE SALARY BETWEEN 4000 AND 10000
+    AND ADDRESS IN ('Hyderabad', 'Bhopal');
 ```
 
 #### `DISTINCT` Keyword
@@ -234,6 +327,71 @@ The `EXISTS` operator is used in the WHERE clause of a SELECT statement to filte
 `Aggregating data based on the existence of related records` − The EXISTS operator can be used to aggregate data based on the existence of related records. For example, finding the number of customers who have placed an order.
 
 `Optimizing queries` − The EXISTS operator can be used to optimize queries by only returning the necessary data. For example, finding the first order for each customer without using a self-join. -->
+
+#### mySQL CASE statement
+
+SQL CASE statement သည် condition တစ်ခုချင်းစီးအတွက် သီးသန့် evaluate လုပ်နိုင်သလို သီးခြားဖော်ပြပေးနိုင်ပါတယ်။ `IF-THEN-ELSE` လို multiple conditions တွေကို စစ်ထုတ်၍ အလုပ်လုပ်ပုံနှင့် ဆင်တူပါတယ် ခင်ဗျာ။
+
+```sql
+    SELECT name, salary, CASE
+    WHEN salary <= 4000 THEN "Lowest Paid"
+    WHEN salary >= 10000 THEN "Hight Paid"
+    ELSE "Normal Paid"
+    END AS salary_status
+    FROM customers;
+```
+
+and then
+
+```sql
+    SELECT
+    CASE
+        WHEN SALARY <= 4000 THEN 'Lowest paid'
+        WHEN SALARY > 4000 AND SALARY <= 6500 THEN 'Average paid'
+    ELSE 'Highest paid'
+        END AS SALARY_STATUS,
+    SUM(SALARY) AS Total
+    FROM CUSTOMERS
+    GROUP BY
+    CASE
+        WHEN SALARY <= 4000 THEN 'Lowest Price'
+        WHEN SALARY > 4000 AND SALARY <= 6500 THEN 'Average Price'
+    ELSE 'Highest Price'
+    END;
+```
+
+```sql
+    SELECT * FROM CUSTOMERS
+    ORDER BY
+    (CASE
+        WHEN NAME LIKE 'k%' THEN NAME
+        ELSE ADDRESS
+    END);
+```
+
+```sql
+    SELECT *, CASE
+    WHEN SALARY < 4500 THEN (SALARY + SALARY * 25/100)
+    ELSE SALARY
+    END AS INCREMENT FROM CUSTOMERS;
+```
+
+#### UNION AND UNION ALL
+
+- The tables to be combined must have the same number of columns with the same datatype.
+- The number of rows need not be the same.
+
+#### What is UNION? &mdash;
+
+`UNION` is a type of operator/clause in SQL, that works similar to the union operator in relational algebra. It just combines the information from multiple tables that are union compatible.
+
+> Only distinct rows from the tables are added to the resultant table, as UNION automatically eliminates all the duplicate records.
+
+```sql
+    SELECT * FROM table1
+    UNION
+    SELECT * FROM table2;
+```
 
 <br>
 
