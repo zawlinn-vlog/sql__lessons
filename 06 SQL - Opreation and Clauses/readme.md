@@ -393,6 +393,43 @@ and then
     SELECT * FROM table2;
 ```
 
+```sql
+    SELECT * FROM table1
+    UNION ALL
+    SELECT * FROM table2;
+```
+
+#### The SQL INTERSECT Operator
+
+The INTERSECT operator in SQL is used to retrieve the records that are identical/common between the result sets of two or more tables.
+
+```sql
+    SELECT colname|* FROM table1
+    INTERSECT
+    SELECT colname|* FROM table2;
+```
+
+#### The SQL EXCEPT Operator
+
+The EXCEPT operator in SQL is used to retrieve all the unique records from the left operand (query), except the records that are present in the result set of the right operand (query).
+
+```sql
+    SELECT colname|* FROM table1
+    EXCEPT
+    SELECT colname|* FROM table2;
+```
+
+#### Aliases
+
+You can rename a table or a column in a database temporarily by giving them another pseudo name. This pseudo name is known as Alias. The use of aliases is to address a specific table or a column in an SQL statement without changing their original name in the database. Aliases are created with the AS keyword.
+
+```sql
+    SELECT cus.fullname,
+    cus.price,
+    SUM(price) AS Total
+    FROM clients AS cus;
+```
+
 <br>
 
 <!-- ![Screenshot of Project](./s1.png) -->
