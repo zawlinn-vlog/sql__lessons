@@ -8,7 +8,7 @@
 
 <br/>
 
-## SQL ဆိုတာဘာလဲ &mdash ?
+## SQL ဆိုတာဘာလဲ &mdash; ?
 
 SQL ဆိုတာ Structured Query Language တစ်ခုဖြစ်ပီး RDBMS - Relational Database Management System တစ်ခုကို Data များ insert, select, update and delete စသဖြင့် management ပြုလုပ်ပေးနိုင်သော Structured Language တစ်ခုဖြစ်ပါသည်။ 1970s လောက်မှာ IBM Computer Scientists များက ဖန်တီးခဲ့ကြပီ ANSI(American National Standards Institute) မှာ 1986 ခုနှစ် နှင့် ISO( International Organization for Standardization) မှာတော့ 1987 ခုနှစ်မှာ Standard တစ်ခုအဖြစ် သတ်မှတ်ထားခဲ့ပါတယ် ခင်ဗျာ။
 
