@@ -10,6 +10,13 @@
 
 ## JOIN
 
+Table နှစ်ခု သို့မဟုတ် နှစ်ခုထက်ပိုသော table record များကို စုပေါင်းထုတ်ချင်တဲ့အခါ JOIN ကို အသုံးပြုရပါတယ်။
+
+အကြမ်းအားဖြင့် JOIN နှစ်မျိုးရှိပါတယ်
+
+1. INNER JOIN
+2. OUTER JOIN
+
 <br>
 
 <!-- ![Screenshot of Project](./s1.png) -->
