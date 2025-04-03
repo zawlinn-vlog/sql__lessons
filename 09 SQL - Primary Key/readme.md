@@ -10,7 +10,30 @@
 
 ## Primary ဆိုတာ ဘာလဲ &mdash; ?
 
+The SQL Primary Key
+The SQL Primary Key is a column (or combination of columns) that uniquely identifies each record in a database table. The Primary Key also speeds up data access and is used to establish a relationship between tables.
+
+> Even though a table can only have one Primary Key, it can be defined on one or more fields. When a primary key is created on multiple fields of a table, it is called a Composite Key.
+
+Let us say, you are developing an application called "Customer Management System" to handle all the customer data of a member-only resort. This data can include their personal details, assigned member IDs, other details of the membership they opted, etc. And in all the tables created within this database, the member ID is used to distinguish the customers from each other. So, this field will be the Primary Key.
+
+Following is the diagram of a CUSTOMERS table that holds the personal details of the customers. And as we can observe, the primary key is defined on the CUST_ID column. Using this primary key, we can retrieve a unique record of any customer.
+
 Primary key ဆိုတာ table တစ်ခုမှ unique ဖိတဲ့ indentifier တစ်ခုဖြစ်တဲ့ပါတယ်။ unique values တွေ ပါနိုင်ပီး NULL ဖြစ်လို့တော့ မရပါဘူး ခင်ဗျာ။ နောက်ပီးတော့ table တစ်ခုမှာ primary key တစ်ခုသာ ရှိရပါမယ်။ သို့သော် အဲ primary key တစ်ခုမှာ column က တစ်ခု သို့မဟုတ် တစ်ခုထက်ပိုပြီး ပါဝင်လို့ရပါတယ်။
+
+<br>
+
+![primary](./assets/img/primary.jpg)
+
+<br>
+
+1. It contains only a unique value.
+
+2. It can not be null.
+
+3. One table can have only one Primary Key.
+
+4. A primary key length cannot be more than 900 bytes.
 
 table တစ်ခုကို primary key ကို single column တွင် ထည့်သွင်း တည်ဆောက်တော့မယ်ဆိုရင်
 

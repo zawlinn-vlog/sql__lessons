@@ -403,6 +403,12 @@ and then
 
 The INTERSECT operator in SQL is used to retrieve the records that are identical/common between the result sets of two or more tables.
 
+<br>
+
+![INTERSECT](./assets/img/intersect.jpg)
+
+<br>
+
 ```sql
     SELECT colname|* FROM table1
     INTERSECT
@@ -412,6 +418,12 @@ The INTERSECT operator in SQL is used to retrieve the records that are identical
 #### The SQL EXCEPT Operator
 
 The EXCEPT operator in SQL is used to retrieve all the unique records from the left operand (query), except the records that are present in the result set of the right operand (query).
+
+<br>
+
+![EXCEPT](./assets/img/exceptclause.jpg)
+
+<br>
 
 ```sql
     SELECT colname|* FROM table1

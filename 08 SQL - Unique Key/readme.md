@@ -14,6 +14,16 @@ Unique ဆိုတာ ထည့်သွင်းသော Data တွေကိ
 
 > Unique column သည် Snigle or Multiple ဖြစ်နိုင်ပါတယ်။
 
+1. The `unique key` is similar to the `primary key` in a table, but it can accept `NULL` values, whereas the `primary key` does not.
+
+2. It accepts only one NULL value.
+
+3. It cannot have duplicate values.
+
+4. It can also be used as a `foreign key` in another table.
+
+5. A table can have more than one Unique column.
+
 ရှိပီးသား Table ထဲမှာ Single Unique Column သတ်မှတ်ခြင်း
 
 ```sql
@@ -29,13 +39,19 @@ Unique ဆိုတာ ထည့်သွင်းသော Data တွေကိ
 Single Unique Key ပါဝင်တဲ့ Table ကို Create ပြုလုပ်ခြင်း
 
 ```sql
-    CREATE TABLE IF NOT EXISTS tbname (colname datatype constraint, colname datatype UNIQUE);
+    CREATE TABLE IF NOT EXISTS tbname (colname datatype constraint, colname datatype UNIQUE KEY);
 ```
 
 or
 
 ```sql
     CREATE TABLE IF NOT EXISTS tbname (colname datatype constraint, colname datatype, UNIQUE (colname));
+```
+
+or
+
+```sql
+    CREATE TABLE IF NOT EXISTS tbname (colname datatype constraint, colname datatype, UNIQUE KEY (colname));
 ```
 
 Multiple Unique Key ပါဝင်တဲ့ Table ကို Create ပြုလုပ်ခြင်း
