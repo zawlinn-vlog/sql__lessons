@@ -24,6 +24,63 @@ SQL ဆိုတာ Structured Query Language တစ်ခုဖြစ်ပီ�
 | Oracle           | PL SQL            |
 | Microsoft Access | JET SQL (DEFAULT) |
 
+### SQL HOSTING
+
+SQL Hosting is nothing but a means to manage any RDBMS linked to your website using SQL. If the website has an access to a RDBMS, any data from the website you created will be stored and retrieved from this database.
+
+There are various SQL hosting plans available if your web server is hosted by an Internet Service Provider (ISP).
+
+Following are the most common SQL hosting databases −
+
+- MS SQL Server
+- Oracle
+- MySQL
+- MS Access
+
+#### 1. MS SQL Server
+
+MS SQL Server is created and developed by Microsoft. It is compatible with both virtual and cloud servers. It is very efficient to use with database-driven websites having high traffic.
+
+MS SQL Server's features include −
+
+- Maximum scalability and security
+- Integrated reporting capabilities
+- Easy to use
+- Powerful
+- Robust
+- Offers more diverse features while hosting
+
+<hr>
+
+#### 2. Oracle
+
+Oracle is a popular database which is suitable to use with high-traffic websites. This database offers various features like,
+
+- Cost-effective product
+- High-performance
+- Converged, multi-model database management system
+- In-memory MySQL databases
+
+> Oracle is also a very powerful, robust and full featured SQL database system.
+
+<hr>
+
+#### 3. MySQL
+
+MySQL is one of the most popular RDBMS in the world used to store and manage data. It is compatible with any type of server, say cloud, virtual or dedicated. Features of MySQL are as follows −
+
+- Easy to use
+- High performance
+- Excellent security
+- Improved speed
+- Cost effective
+
+<hr>
+
+#### 4. MS Access
+
+Microsoft Access is a very simple database which can be used for simple websites. MS Access is neither as powerful as MySQL, MS SQL Server or Oracle. Thus, it is not effective for websites with higher traffic.
+
 ## RDBMS ဆိုတာ ဘာလဲ &mdash; ?
 
 RDBMS ဆိုတာ Relational Database Management System တစ်ခုဖြစ်ပီး ထည့်သွင်းလိုက်သော Data များကို Table များအတွင်း သိမ်းဆည်းထားပါတယ်။ Table columns များကို Field ဟု ခေါ်ဆိုနိုင်ပီး Table Row များကို တော့ Record များအဖြစ် ခေါ်ဆိုပါတယ် ခင်ဗျ။
