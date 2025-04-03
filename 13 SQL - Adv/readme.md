@@ -10,12 +10,100 @@
 
 ## MIN() and MAX();
 
+The MIN() and MAX() functions in SQL are aggregate functions. They are used to compare values in a set and, retrieve the maximum and minimum values respectively.
+
+> An aggregate function is a mathematical computation that takes a range of values as input and yields a single value expression, representing the significance of the provided data.
+
+MAX() and MIN() aggregate functions are generally used in two ways:
+
+- As functions, they are used with the GROUP BY clause of the SELECT statement.
+
+- As expressions, they are used with a subquery and HAVING clause of SELECT statement.
+
 ```sql
-    SELECT MAX(salary), MIX(salary) FROM customers;
+    SELECT MAX(salary), MIX(salary)
+    FROM customers;
 ```
 
 ```sql
-    SELECT * FROM customers WHERE salary =  (SELECT MIN(salary) FROM customers);
+    SELECT * FROM customers
+    WHERE salary =  (SELECT MIN(salary)
+    FROM customers);
+```
+
+### NULL in SQL &mdash;
+
+SQL `NULL` functions are used to perform operations on `NULL` values that are stored in the database tables.
+
+A `NULL` value serves as a placeholder in the database when data is absent or the required information is unavailable. It is a flexible value not associated to any specific data type and can be used in columns of various data types, including string, int, varchar, and more.
+
+Following are the various features of a `NULL` value −
+
+The `NULL` value is different from a zero value or a field containing a space. A record with a `NULL` value is one that has been left empty or unspecified during record creation.
+
+The `NULL` value assists us in removing ambiguity from data. Thus, maintaining the uniform datatype across the column.
+
+### SQL NULL Functions
+
+To handle these `NULL` values in a database table, SQL provides various `NULL` functions. They are listed as follows −
+
+- ISNULL()
+
+- COALESCE()
+
+- NULLIF()
+
+- IFNULL()
+
+### The ISNULL() Function
+
+The SQL `ISNULL()` function returns 0 and 1 depending on whether the expression is null or not. If the expression is null, then this function returns 1; otherwise, it returns 0.
+
+```sql
+    SELECT salary,
+    ISNULL(salary)
+    FROM customers;
+```
+
+### The COALESCE() Function
+
+The SQL `COALESCE()` function returns the first occurred NON-NULL expression among its arguments. If all the expressions are NULL, then the `COALESCE()` function will return NULL.
+
+> An integer is evaluated first in the `COALESCE()` function, and an integer followed by a character expression always produces an integer as the output.
+
+```sql
+    SELECT NAME,
+    SALARY,
+    AGE,
+    COALESCE(NULL, SALARY, AGE)
+    AS Result FROM CUSTOMERS;
+```
+
+### The NULLIF() Function
+
+The SQL `NULLIF()` function compares two expressions. If both expressions are the same, it returns NULL. Otherwise, it returns the first expression. This function can be used directly with clauses like SELECT, WHERE, and GROUP BY.
+
+```sql
+    SELECT NAME,
+    ADDRESS,
+    NULLIF(NAME, ADDRESS) AS Result
+    FROM CUSTOMERS;
+```
+
+### The IFNULL() Function
+
+The IFNULL() function replaces the NULL values in a database table with a specific value. This function accepts two arguments. If the first argument is a NULL value, it is replaced with the second argument. Otherwise, the first argument is returned as it is.
+
+> This function does not work in the SQL Server database.
+
+If both the arguments are NULL, the result of this function is also NULL.
+
+```sql
+    SELECT NAME,
+    SALARY,
+    IFNULL(SALARY, 5500) AS Result
+    FROM CUSTOMERS;
+
 ```
 
 <br>
